@@ -41,22 +41,30 @@ class WeatherData(Subject):
         self.observers.remove(observer)
     
     def notifyObservers(self):
-        # We notify the observers when we get updated measurements 
-        # from the Weather Station.
         for ob in self.observers:
-            ob.update(self.temperature, self.humidity, self.pressure)
-    
+            ob.update(
+                self.getTemperature(),
+                self.getHumidity(),
+                self.getPressure(),
+            )
+
     def measurementsChanged(self):
         self.notifyObservers()
-    
+
     def setMeasurements(self, temperature, humidity, pressure):
         self.temperature = temperature
         self.humidity = humidity
         self.pressure = pressure
-        
         self.measurementsChanged()
-    
-    # other WeatherData methods here.
+
+    def getTemperature(self):
+        return self.temperature
+
+    def getHumidity(self):
+        return self.humidity
+
+    def getPressure(self):
+        return self.pressure
 
 class CurrentConditionsDisplay(Observer):
     
