@@ -36,8 +36,8 @@ class WeatherData(Subject):
         self.observers.append(observer)
         
     def removeObserver(self, observer):
-        # When an observer wants to un-register,
-        # we just take it off the list.
+        if observer not in self.observers:
+            return
         self.observers.remove(observer)
     
     def notifyObservers(self):
