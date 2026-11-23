@@ -138,8 +138,8 @@ class WeatherStation:
     def main(self):
         weather_data = WeatherData()
         current_display = CurrentConditionsDisplay(weather_data)
-        stats_display = StatisticsDisplay(weather_data)
-        forecast_display = ForecastDisplay(weather_data)
+        StatisticsDisplay(weather_data)
+        ForecastDisplay(weather_data)
 
         weather_data.setMeasurements(80, 65, 30.4)
         weather_data.setMeasurements(82, 70, 29.2)
