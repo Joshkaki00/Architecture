@@ -66,28 +66,7 @@ class WeatherData(Subject):
     def getPressure(self):
         return self.pressure
 
-class CurrentConditionsDisplay(Observer):
-    
-    def __init__(self, weatherData):        
-        self.temerature = 0
-        self.humidity = 0
-        self.pressure = 0
-        
-        self.weatherData = weatherData # save the ref in an attribute.
-        weatherData.registerObserver(self) # register the observer 
-                                           # so it gets data updates.
-    def update(self, temperature, humidity, pressure):
-        self.temerature = temperature
-        self.humidity = humidity
-        self.pressure = pressure
-        self.display()
-        
-    def display(self):
-        print("Current conditions:", self.temerature, 
-              "F degrees and", self.humidity,"[%] humidity",
-              "and pressure", self.pressure)
-
-class ForecastDisplay(Observer):
+class Display(Observer):
 
     def __init__(self, weatherData):
         self.temperature = 0
@@ -101,6 +80,21 @@ class ForecastDisplay(Observer):
         self.humidity = humidity
         self.pressure = pressure
         self.display()
+
+    def display(self):
+        pass
+
+class CurrentConditionsDisplay(Display):
+
+    def display(self):
+        print(
+            "Current conditions:",
+            self.temperature, "F degrees and",
+            self.humidity, "[%] humidity",
+            "and pressure", self.pressure,
+        )
+
+class ForecastDisplay(Display):
 
     def display(self):
         forecast_temp = self.temperature + 0.11 * self.humidity + 0.2 * self.pressure
