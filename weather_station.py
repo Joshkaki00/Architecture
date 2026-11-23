@@ -96,15 +96,21 @@ class CurrentConditionsDisplay(Display):
 
 class ForecastDisplay(Display):
 
+    def forecast_temp(self):
+        return self.temperature + 0.11 * self.humidity + 0.2 * self.pressure
+
+    def forecast_humidity(self):
+        return self.humidity - 0.9 * self.humidity
+
+    def forecast_pressure(self):
+        return self.pressure + 0.1 * self.temperature - 0.21 * self.pressure
+
     def display(self):
-        forecast_temp = self.temperature + 0.11 * self.humidity + 0.2 * self.pressure
-        forecast_humidity = self.humidity - 0.9 * self.humidity
-        forecast_pressure = self.pressure + 0.1 * self.temperature - 0.21 * self.pressure
         print(
             "Forecast:",
-            forecast_temp, "F,",
-            forecast_humidity, "[%] humidity,",
-            "pressure", forecast_pressure,
+            self.forecast_temp(), "F,",
+            self.forecast_humidity(), "[%] humidity,",
+            "pressure", self.forecast_pressure(),
         )
 
 class StatisticsDisplay(Display):
