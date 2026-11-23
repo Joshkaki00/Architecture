@@ -23,8 +23,8 @@ class WeatherData(Subject):
     
     
     def registerObserver(self, observer):
-        # When an observer registers, we just 
-        # add it to the end of the list.
+        if observer in self.observers:
+            return
         self.observers.append(observer)
         
     def removeObserver(self, observer):
