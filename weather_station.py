@@ -107,6 +107,33 @@ class ForecastDisplay(Display):
             "pressure", forecast_pressure,
         )
 
+class StatisticsDisplay(Display):
+
+    def __init__(self, weatherData):
+        self.temps = []
+        super().__init__(weatherData)
+
+    def update(self, temperature, humidity, pressure):
+        self.temps.append(temperature)
+        super().update(temperature, humidity, pressure)
+
+    def min_temp(self):
+        return min(self.temps)
+
+    def max_temp(self):
+        return max(self.temps)
+
+    def avg_temp(self):
+        return sum(self.temps) / len(self.temps)
+
+    def display(self):
+        print(
+            "Avg/Max/Min temperature:",
+            self.avg_temp(), "/",
+            self.max_temp(), "/",
+            self.min_temp(),
+        )
+
 class WeatherStation:
     def main(self):
         weather_data = WeatherData()
