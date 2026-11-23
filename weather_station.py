@@ -82,7 +82,14 @@ class Display(Observer):
         self.display()
 
     def display(self):
-        pass
+        if not self.temps:
+            return
+        print(
+            "Avg/Max/Min temperature:",
+            self.avg_temp(), "/",
+            self.max_temp(), "/",
+            self.min_temp(),
+        )
 
 class CurrentConditionsDisplay(Display):
 
