@@ -86,10 +86,33 @@ class CurrentConditionsDisplay(Observer):
         print("Current conditions:", self.temerature, 
               "F degrees and", self.humidity,"[%] humidity",
               "and pressure", self.pressure)
-        
-# TODO: implement StatisticsDisplay class and ForecastDisplay class.
-    
-    
+
+class ForecastDisplay(Observer):
+
+    def __init__(self, weatherData):
+        self.temperature = 0
+        self.humidity = 0
+        self.pressure = 0
+        self.weatherData = weatherData
+        weatherData.registerObserver(self)
+
+    def update(self, temperature, humidity, pressure):
+        self.temperature = temperature
+        self.humidity = humidity
+        self.pressure = pressure
+        self.display()
+
+    def display(self):
+        forecast_temp = self.temperature + 0.11 * self.humidity + 0.2 * self.pressure
+        forecast_humidity = self.humidity - 0.9 * self.humidity
+        forecast_pressure = self.pressure + 0.1 * self.temperature - 0.21 * self.pressure
+        print(
+            "Forecast:",
+            forecast_temp, "F,",
+            forecast_humidity, "[%] humidity,",
+            "pressure", forecast_pressure,
+        )
+
 class WeatherStation:
     def main(self):
         weather_data = WeatherData()
