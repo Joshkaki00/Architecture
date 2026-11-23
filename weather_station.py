@@ -1,21 +1,13 @@
 class Subject:
-    # Both of the following two methods take an
-    # observer as an argument; that is, the observer
-    # to be registered ore removed.
-    def registerObserver(observer):
+    def registerObserver(self, observer):
         pass
-    def removeObserver(observer):
+
+    def removeObserver(self, observer):
         pass
-    
-    # This method is called to notify all observers
-    # when the Subject's state (measuremetns) has changed.
-    def notifyObservers():
+
+    def notifyObservers(self):
         pass
-    
-# The observer class is implemented by all observers,
-# so they all have to implemented the update() method. Here
-# we're following Mary and Sue's lead and 
-# passing the measurements to the observers.
+
 class Observer:
     def update(self, temp, humidity, pressure):
         pass
