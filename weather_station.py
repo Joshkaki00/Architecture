@@ -165,3 +165,6 @@ class WeatherStation:
 if __name__ == "__main__":
     w = WeatherStation()
     w.main()
+    current_display = CurrentConditionsDisplay(weather_data)
+    stats_display = StatisticsDisplay(weather_data)
+    forecast_display = ForecastDisplay(weather_data)
